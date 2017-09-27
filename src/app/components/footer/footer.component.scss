@@ -1,0 +1,22 @@
+footer {
+    font-size: 30px;
+    padding: 10px 0;
+    background: #f6f6f6;
+    color: #000;
+    bottom: 0;
+    width: 100%;
+    background-color: #1e1e1e;
+    z-index: 2;
+  }
+  .footer-img:after {
+    content: "";
+    background: url(../../assets/images/qb-logo-smaller.png) no-repeat;
+    width: 114px;
+    height: 49px;
+    display: inline-block;
+  }
+  .footer-wrap {
+    display: flex;
+    width: 95%;
+    margin: 0 auto;
+  }

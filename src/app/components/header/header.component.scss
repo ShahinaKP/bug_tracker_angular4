@@ -1,0 +1,46 @@
+
+.logo:after {
+    content: "";
+    background: url(/assets/images/qb-logo.svg) no-repeat;
+    width: 94px;
+    height: 40px;
+    display: inline-block;
+  }
+  .navbar {
+    padding-top: 10px;
+    position: fixed;
+    width: 100%;
+    background: rgba(255,255,255,0.9);
+    border: none;
+    top: 0;
+  }
+  .navbar .container {
+    padding: 0;
+  }
+  .navbar-static-top {
+    z-index: 5;
+    border-bottom: 1px solid #ddd;
+  }
+  .navbar h1.navbar-brand {
+    margin: 0;
+    font-size: 25px;
+    color: #4eb1ba;
+  }
+  .header-wrap {
+    display: flex;
+  }
+  .navbar-header,
+  .navbar-collapse {
+    width: 10%;
+  }
+  .title-wrap {
+    width: 80%;
+    text-align: center;
+  }
+  .title-text {
+    font-size: 22px;
+    color: #505050;
+    margin-top: 10px;
+    font-weight: 700;
+  }  
+  
