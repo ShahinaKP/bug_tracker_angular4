@@ -1,15 +1,20 @@
 <div class="site">
     <app-header></app-header>
     <div class="container site-content">
-      <div>
-        <div class="filter-wrap">
+        <!-- <div class="filter-wrap">
           <select class="form-control" [(ngModel)]="filterValue" name="filter">
             <option *ngFor="let filter of filters" [value]="filter.value">{{filter.text}}</option>
           </select>
           <input class="form-control" (keyup)="customFilter($event, datatable)" placeholder="Filter">
+        </div> -->
+        <div *ngFor="let d of data">
+          <table>
+            <tr>
+              <td>{{d.name}}</td>
+            </tr>
+          </table>
         </div>
-        
-      </div>
+
     </div>
     <app-footer></app-footer>
   </div>

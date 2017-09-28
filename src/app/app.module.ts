@@ -10,7 +10,8 @@ import { FormsModule } from '@angular/forms';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
-
+import { ReturnSetInfoDataService } from './components/dashboard/dashboard.service';
+import { HttpModule } from '@angular/http';
 
 export const environment = {
     production: false,
@@ -31,7 +32,8 @@ export const environment = {
         FormsModule,
         AngularFireModule.initializeApp(environment.firebase),
         AngularFireDatabaseModule,
-        AngularFireAuthModule
+        AngularFireAuthModule,
+        HttpModule
     ],
     declarations: [
         AppComponent,
@@ -40,6 +42,7 @@ export const environment = {
         HeaderComponent,
         FooterComponent
     ],
+    providers: [ ReturnSetInfoDataService ],
     bootstrap: [AppComponent]
 })
 
