@@ -1,20 +1,22 @@
 <div class="site">
-    <app-header></app-header>
-    <div class="container site-content">
-        <!-- <div class="filter-wrap">
-          <select class="form-control" [(ngModel)]="filterValue" name="filter">
-            <option *ngFor="let filter of filters" [value]="filter.value">{{filter.text}}</option>
-          </select>
-          <input class="form-control" (keyup)="customFilter($event, datatable)" placeholder="Filter">
-        </div> -->
-        <div *ngFor="let d of data">
-          <table>
-            <tr>
-              <td>{{d.name}}</td>
-            </tr>
-          </table>
+  <app-header></app-header>
+  <div class="site-content">
+    <div class="container">
+      <div class="index-right">
+        <div *ngFor="let key of index">
+          <p (click)="indexTo(key)">{{key}}</p>
         </div>
+      </div>
+
+      <div *ngFor="let key of index" class="row-item">
+        <p class="list-index" id="index{{key}}">{{key}}</p>
+
+        <div *ngFor="let d of groupedData[key]" class="row-item">
+          <p>{{d.name}}</p>
+        </div>
+      </div>
 
     </div>
-    <app-footer></app-footer>
   </div>
+  <app-footer></app-footer>
+</div>

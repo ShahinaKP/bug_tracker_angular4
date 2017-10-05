@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
-// import { AngularFireAuth } from 'angularfire2/auth';
-// import * as firebase from 'firebase';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @Component({
   selector: 'login',
@@ -11,10 +10,12 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
 })
 
 export class LoginComponent {  
-  constructor(private router: Router) { }
+  constructor(private router: Router, private afAuth: AngularFireAuth) { }
 
-  onSubmit() {    
-      console.log("Login form submitted");
-      this.router.navigate(['/dashboard']);
+  onSubmit() { 
+    this.router.navigate(['/dashboard']);
   }
 }
+
+
+

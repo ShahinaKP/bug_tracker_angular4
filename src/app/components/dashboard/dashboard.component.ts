@@ -1,5 +1,6 @@
-import { Component} from '@angular/core';
+import { Component, Pipe ,PipeTransform } from '@angular/core';
 import { Observable } from 'rxjs';
+import animateScrollTo from 'animated-scroll-to';
 
 import { ReturnSetInfoDataService } from './dashboard.service';
 
@@ -9,14 +10,69 @@ import { ReturnSetInfoDataService } from './dashboard.service';
   styleUrls: ['./dashboard.component.scss'],
   providers: [ ReturnSetInfoDataService ]
 })
-export class DashboardComponent {
-  data: Observable<Array<any>>;
+
+@Pipe(
+  {
+    name: "groupByAlphabeticalOrder"
+  }
+)
+export class DashboardComponent{
+  data = []; 
+  index = [];
+  groupedData = [];
+  finalData = [];
 
   constructor(private dataService: ReturnSetInfoDataService) {
     dataService.getSetInfoData().subscribe(res => {
       this.data = res;
-      debugger
+
+      this.data.forEach(gropedItem => {
+        let items = [];
+        if (!gropedItem.name || !gropedItem.name.length) return;
+      
+        let firstLetter = gropedItem.name[0];
+        let index = firstLetter;
+        if (!this.groupedData[firstLetter]) {
+          this.groupedData[firstLetter] = [];
+          this.index.push(firstLetter);
+
+        }
+        
+        this.groupedData[firstLetter].push(gropedItem);       
+  
+      });
+      console.log(this.index);      
     });
+        
+  }  
+  
+  indexTo(index) {    
+    let element = document.getElementById('index'+index);
+    let yPoint = element.offsetTop - 80;
+    const options = {
+      // duration of the scroll per 1000px, default 500
+      speed: 500,
     
+      // minimum duration of the scroll
+      minDuration: 250,
+    
+      // maximum duration of the scroll
+      maxDuration: 1500,
+    
+      // DOM element to scroll, default window
+      // Pass a reference to a DOM object
+      // Example: document.querySelector('#element-to-scroll'),
+      element: window,
+    
+      // should animated scroll be canceled on user scroll/keypress
+      // if set to "false" user input will be disabled until animated scroll is complete
+      cancelOnUserAction: true
+    };
+    
+    animateScrollTo(yPoint, options);
   }
+  
 }
+
+
+

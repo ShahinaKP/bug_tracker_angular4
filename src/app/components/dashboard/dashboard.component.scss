@@ -1,0 +1,19 @@
+.site-content {    
+    background-color: rgb(48, 59, 61);
+    color: #fff;
+    padding-top: 55px;
+
+    .index-right {
+        position: fixed;
+        right: 10px;
+        top: 125px;        
+        p {
+            cursor: pointer;
+            margin-bottom: 0;
+        }
+    }
+
+    .row-item {
+        padding: 10px 0;        
+    }
+}
