@@ -1,5 +1,4 @@
 import { Component, Pipe ,PipeTransform } from '@angular/core';
-import { Observable } from 'rxjs';
 import animateScrollTo from 'animated-scroll-to';
 
 import { ReturnSetInfoDataService } from './dashboard.service';
@@ -11,21 +10,14 @@ import { ReturnSetInfoDataService } from './dashboard.service';
   providers: [ ReturnSetInfoDataService ]
 })
 
-@Pipe(
-  {
-    name: "groupByAlphabeticalOrder"
-  }
-)
 export class DashboardComponent{
   data = []; 
   index = [];
   groupedData = [];
-  finalData = [];
 
   constructor(private dataService: ReturnSetInfoDataService) {
     dataService.getSetInfoData().subscribe(res => {
       this.data = res;
-
       this.data.forEach(gropedItem => {
         let items = [];
         if (!gropedItem.name || !gropedItem.name.length) return;
@@ -35,13 +27,11 @@ export class DashboardComponent{
         if (!this.groupedData[firstLetter]) {
           this.groupedData[firstLetter] = [];
           this.index.push(firstLetter);
-
         }
         
         this.groupedData[firstLetter].push(gropedItem);       
   
-      });
-      console.log(this.index);      
+      });      
     });
         
   }  
