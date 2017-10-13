@@ -6,7 +6,13 @@
     .index-right {
         position: fixed;
         right: 10px;
-        top: 125px;        
+        top: 125px;
+        .calendar-btn {
+            color: #000;
+            position: relative;
+            top: -25px;
+            right: 40px;
+        }        
         p {
             cursor: pointer;
             margin-bottom: 0;
