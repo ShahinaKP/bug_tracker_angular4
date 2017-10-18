@@ -11,16 +11,9 @@ import { Ng4LoadingSpinnerModule, Ng4LoadingSpinnerService } from 'ng4-loading-s
 })
 
 export class LoginComponent {
-  // constructor(private router: Router) { }
-
-  // onSubmit() { 
-  //   this.router.navigate(['/calendar']);
-  // }
-  state: string = '';
   error: any;
   public loading = false;
   constructor(public afAuth: AngularFireAuth, private router: Router, private spinnerService: Ng4LoadingSpinnerService ) { }
-
 
   onSubmit(formData) {
     this.spinnerService.show();

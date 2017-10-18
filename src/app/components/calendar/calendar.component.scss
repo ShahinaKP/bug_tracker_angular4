@@ -1,11 +1,17 @@
-mwl-demo-utils-calendar-header {
-    .btn-primary {
-        background-color: #D46845;
-        border-color: #D46845;
-        &:hover, &:focus, &:active, &.active, &.active:hover,  {
-            background-color: #DD3C08;
-            border-color: #DD3C08;
-        }       
+calendar-component {
+    .container {
+        padding-top: 25px;
+        mwl-demo-utils-calendar-header {
+            .btn-primary {
+                background-color: #D46845;
+                border-color: #D46845;
+                &:hover, &:focus, &:active, &.active, &.active:hover,  {
+                    background-color: #DD3C08;
+                    border-color: #DD3C08;
+                }       
+            }
+        }
     }
 }
+
   

@@ -1,13 +1,43 @@
+<ng-template #modalContent let-close="close">
+  <div class="modal-header">
+    <h5 class="modal-title" *ngIf="!titleEditorEnabled" (click)="titleEnableEditor()">{{modalData?.event.title}}</h5>
+    <div *ngIf="titleEditorEnabled">
+      <input [(ngModel)]="modalData.event.title"  *ngIf="titleEditorEnabled" />
+      <button (click)="save()">Save</button>
+      <button (click)="disableEditor()">cancel</button>
+    </div>
+
+    <button type="button" class="close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div>
+      <pre>
+        START: {{ modalData?.event.start}}
+        END: {{ modalData?.event.end}}
+      </pre>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="close()">OK</button>
+  </div>
+</ng-template>
+
 <div class="container">
   <mwl-demo-utils-calendar-header [(view)]="view" [(viewDate)]="viewDate">
   </mwl-demo-utils-calendar-header>
 
   <div [ngSwitch]="view">
-    <mwl-calendar-month-view *ngSwitchCase="'month'" [viewDate]="viewDate" [events]="events" (beforeViewRender)="beforeMonthViewRender($event)">
+    <mwl-calendar-month-view *ngSwitchCase="'month'" [viewDate]="viewDate" [events]="events" (beforeViewRender)="beforeMonthViewRender($event)"
+       (eventClicked)="handleEvent('Clicked', $event.event)">
     </mwl-calendar-month-view>
-    <mwl-calendar-week-view *ngSwitchCase="'week'" [viewDate]="viewDate" [events]="events">
+
+    <mwl-calendar-week-view *ngSwitchCase="'week'" [viewDate]="viewDate" [events]="events" (dayHeaderClicked)="clickedDate = $event.day.date"
+      (eventClicked)="handleEvent('Clicked', $event.event)">
     </mwl-calendar-week-view>
-    <mwl-calendar-day-view *ngSwitchCase="'day'" [viewDate]="viewDate" [events]="events">
+
+    <mwl-calendar-day-view *ngSwitchCase="'day'" [viewDate]="viewDate" [events]="events" (eventClicked)="handleEvent('Clicked', $event.event)">
     </mwl-calendar-day-view>
   </div>
 </div>
