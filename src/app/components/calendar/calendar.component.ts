@@ -5,8 +5,10 @@ import {
   ViewChild,
   TemplateRef,
   Injectable,
-  OnInit
+  OnInit,
 } from '@angular/core';
+
+import { Subject } from 'rxjs/Subject';
 
 import {
   startOfDay,
@@ -19,8 +21,12 @@ import {
   addHours
 } from 'date-fns';
 
-import { CalendarEvent, CalendarMonthViewDay, CalendarEventAction } from 'angular-calendar';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import {
+  CalendarEvent, CalendarMonthViewDay,
+  CalendarEventAction,
+  CalendarEventTimesChangedEvent
+} from 'angular-calendar';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'calendar-component',
@@ -32,16 +38,18 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 export class CalendarComponent implements OnInit {
-  constructor(private modal: NgbModal) {}
+  constructor(private modal: NgbModal) { }
 
   titleEditorEnabled: boolean;
-  editableTitle:String = 'Testing';
+  editableTitle: String;
+
   ngOnInit() {
     this.titleEditorEnabled = false;
-     
+
   }
   view: string = 'month';
   viewDate: Date = new Date();
+  index: number;
 
   colors: any = {
     red: {
@@ -79,6 +87,8 @@ export class CalendarComponent implements OnInit {
     }
   ];
 
+  refresh: Subject<any> = new Subject();
+
   events: CalendarEvent[] = [
     {
       start: subDays(startOfDay(new Date()), 1),
@@ -107,11 +117,11 @@ export class CalendarComponent implements OnInit {
       color: this.colors.red,
       actions: this.actions
     }
-  ];  
+  ];
 
-  clickedDate;
 
   @ViewChild('modalContent') modalContent: TemplateRef<any>;
+  @ViewChild('modalDelete') modalDelete: TemplateRef<any>;
 
   beforeMonthViewRender({ body }: { body: CalendarMonthViewDay[] }): void {
     body.forEach(day => {
@@ -120,7 +130,7 @@ export class CalendarComponent implements OnInit {
       }
     });
   }
- 
+
 
   handleEvent(action: string, event: CalendarEvent): void {
     this.modalData = { event, action };
@@ -128,15 +138,42 @@ export class CalendarComponent implements OnInit {
   }
 
   // Edit Event    
-  titleEnableEditor() {
+  titleEnableEditor(events) {
     this.titleEditorEnabled = true;
+    this.editableTitle = events.title;
+
   };
-  
+
   disableEditor() {
     this.titleEditorEnabled = false;
   };
-  
-  save() {
+
+  save(events) {
     this.disableEditor();
+    events.title = this.editableTitle;
   };
+
+  eventTimesChanged({
+    event,
+    newStart,
+    newEnd
+  }: CalendarEventTimesChangedEvent): void {
+    event.start = newStart;
+    event.end = newEnd;
+    this.handleEvent('Dropped or resized', event);
+    this.refresh.next();
+  }
+
+  deleteEventConfirm(event) {
+    this.modal.open(this.modalDelete);
+    this.index = this.events.indexOf(event);
+  }
+
+  deleteEvent() {
+    this.events.splice(this.index, 1); 
+    this.refresh.next();
+    this.index = -1;
+  }
 }
+
+

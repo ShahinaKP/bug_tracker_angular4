@@ -1,23 +1,23 @@
 <div class="site">
-  <app-header></app-header>
   <div class="site-content">
     <div class="container">
       <div class="index-right">
-        <button class="calendar-btn" (click)="gotoCalendar()">PlannerPad</button>
+        <button class="btn-calendar btn-orange" role="button" (click)="gotoCalendar()">Calendar</button>
         <div *ngFor="let key of index">
-          <p (click)="indexTo(key)">{{key}}</p>
+          <p (click)="indexTo($event,key)" >{{key}}</p>
         </div>
       </div>
 
-      <div *ngFor="let key of index" class="row-item">
-        <p class="list-index" id="index{{key}}">{{key}}</p>
+      <div class="list-wrapper">
+        <div *ngFor="let key of index" class="row-item">
+          <p class="list-index" id="index{{key}}">{{key}}</p>
 
-        <div *ngFor="let d of groupedData[key]" class="row-item">
-          <p>{{d.name}}</p>
+          <div *ngFor="let d of groupedData[key]" class="row-item">
+            <p>{{d.name}}</p>
+          </div>
         </div>
       </div>
 
     </div>
   </div>
-  <app-footer></app-footer>
 </div>

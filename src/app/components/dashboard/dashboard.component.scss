@@ -1,25 +1,39 @@
 .site-content {    
-    background-color: rgb(48, 59, 61);
-    color: #fff;
+    // background-color: rgb(48, 59, 61);
+    // color: #fff;
     padding-top: 55px;
 
-    .index-right {
-        position: fixed;
-        right: 10px;
-        top: 125px;
-        .calendar-btn {
-            color: #000;
-            position: relative;
-            top: -25px;
-            right: 40px;
-        }        
-        p {
-            cursor: pointer;
-            margin-bottom: 0;
+    .container {
+        padding: 0;
+        .index-right {
+            position: fixed;
+            right: 10px;
+            top: 125px;
+            .btn-calendar {
+                position: relative;
+                top: -25px;
+                right: 40px;
+            }
+    
+            .btn-orange {
+                color: #fff;
+                background-color: #D46845;
+                border-color: #D46845;
+            }
+    
+            p {
+                cursor: pointer;
+                margin-bottom: 0;
+                &:hover, &.active {
+                    color: #D46845;
+                }
+            }
         }
-    }
-
-    .row-item {
-        padding: 10px 0;        
-    }
+        .list-wrapper {
+            padding: 20px 0;
+            .row-item {
+                padding: 0;        
+            }
+        }
+    }        
 }

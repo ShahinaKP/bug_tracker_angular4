@@ -3,38 +3,8 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 @Component({
   selector: 'mwl-demo-utils-calendar-header',
   template: `
-    <div class="row text-center">
-      <div class="col-md-4">
-        <div class="btn-group">
-          <div
-            class="btn btn-primary"
-            mwlCalendarPreviousView
-            [view]="view"
-            [(viewDate)]="viewDate"
-            (viewDateChange)="viewDateChange.next(viewDate)">
-            Previous
-          </div>
-          <div
-            class="btn btn-outline-secondary"
-            mwlCalendarToday
-            [(viewDate)]="viewDate"
-            (viewDateChange)="viewDateChange.next(viewDate)">
-            Today
-          </div>
-          <div
-            class="btn btn-primary"
-            mwlCalendarNextView
-            [view]="view"
-            [(viewDate)]="viewDate"
-            (viewDateChange)="viewDateChange.next(viewDate)">
-            Next
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):locale }}</h3>
-      </div>
-      <div class="col-md-4">
+    <div class="row text-center">  
+      <div class="col-md-4 text-left">
         <div class="btn-group">
           <div
             class="btn btn-primary"
@@ -53,6 +23,36 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
             (click)="viewChange.emit('day')"
             [class.active]="view === 'day'">
             Day
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):locale }}</h3>
+      </div>
+      <div class="col-md-4 text-right">
+        <div class="btn-group">
+          <div
+            class="btn btn-primary"
+            mwlCalendarPreviousView
+            [view]="view"
+            [(viewDate)]="viewDate"
+            (viewDateChange)="viewDateChange.next(viewDate)">
+            <i class="fa fa-chevron-left" aria-hidden="true"></i>
+          </div>
+          <div
+            class="btn btn-outline-secondary"
+            mwlCalendarToday
+            [(viewDate)]="viewDate"
+            (viewDateChange)="viewDateChange.next(viewDate)">
+            Today
+          </div>
+          <div
+            class="btn btn-primary"
+            mwlCalendarNextView
+            [view]="view"
+            [(viewDate)]="viewDate"
+            (viewDateChange)="viewDateChange.next(viewDate)">
+            <i class="fa fa-chevron-right" aria-hidden="true"></i>
           </div>
         </div>
       </div>

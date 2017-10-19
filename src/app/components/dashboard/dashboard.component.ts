@@ -37,9 +37,9 @@ export class DashboardComponent{
     this.router.navigate(['/calendar']);
   }
   
-  indexTo(index) {    
+  indexTo(event,index) {
     let element = document.getElementById('index'+index);
-    let yPoint = element.offsetTop - 80;
+    let yPoint = element.offsetTop - 30;
     window.scrollTo(0,yPoint);
   }
   
