@@ -5,8 +5,8 @@ var path = require('path'),
 
 module.exports = {
   entry: {
-    'app': './src/main.ts',
-    'polyfills': [
+    '../app': './src/main.ts',
+    '../polyfills': [
       'core-js/es6',
       'core-js/es7/reflect',
       'zone.js/dist/zone'
