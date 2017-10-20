@@ -3,17 +3,17 @@
     <div class="container">
       <div class="index-right">
         <button class="btn-calendar btn-orange" role="button" (click)="gotoCalendar()">Calendar</button>
-        <div *ngFor="let key of index">
-          <p (click)="indexTo($event,key)" >{{key}}</p>
+        <div *ngFor="let key of indices">
+          <p (click)="indexTo($event,key)" [ngClass]="{'active': selectedItem == key}">{{key}}</p>
         </div>
       </div>
 
       <div class="list-wrapper">
-        <div *ngFor="let key of index" class="row-item">
+        <div *ngFor="let key of indices" class="row-item">
           <p class="list-index" id="index{{key}}">{{key}}</p>
 
-          <div *ngFor="let d of groupedData[key]" class="row-item">
-            <p>{{d.name}}</p>
+          <div *ngFor="let data of groupedData[key]" class="row-item">
+            <p>{{data.name}}</p>
           </div>
         </div>
       </div>

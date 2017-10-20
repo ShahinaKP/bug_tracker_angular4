@@ -12,8 +12,9 @@ import { ReturnSetInfoDataService } from './dashboard.service';
 
 export class DashboardComponent{
   data = []; 
-  index = [];
+  indices = [];
   groupedData = [];
+  selectedItem;
 
   constructor(private dataService: ReturnSetInfoDataService, private router: Router) {
     dataService.getSetInfoData().subscribe(res => {
@@ -26,7 +27,7 @@ export class DashboardComponent{
         let index = firstLetter;
         if (!this.groupedData[firstLetter]) {
           this.groupedData[firstLetter] = [];
-          this.index.push(firstLetter);
+          this.indices.push(firstLetter);
         }        
         this.groupedData[firstLetter].push(gropedItem);
       });      
@@ -38,6 +39,7 @@ export class DashboardComponent{
   }
   
   indexTo(event,index) {
+    this.selectedItem = index;
     let element = document.getElementById('index'+index);
     let yPoint = element.offsetTop - 30;
     window.scrollTo(0,yPoint);

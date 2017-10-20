@@ -1,8 +1,5 @@
-.site-content {    
-    // background-color: rgb(48, 59, 61);
-    // color: #fff;
-    padding-top: 55px;
-
+.site-content { 
+    padding-top: 60px;
     .container {
         padding: 0;
         .index-right {
@@ -26,6 +23,7 @@
                 margin-bottom: 0;
                 &:hover, &.active {
                     color: #D46845;
+                    font-weight: bold;
                 }
             }
         }
