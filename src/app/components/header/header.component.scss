@@ -1,18 +1,19 @@
 
 .logo:after {
     content: "";
-    background: url(/assets/images/qb-logo.svg) no-repeat;
-    width: 94px;
-    height: 40px;
+    background: url(/assets/images/qb-logo-smaller.png) no-repeat;
+    width: 114px;
+    height: 49px;
     display: inline-block;
   }
   .navbar {
     padding-top: 10px;
     position: fixed;
     width: 100%;
-    background: rgba(255,255,255,1);
+    background: #1e1e1e;
     border: none;
     top: 0;
+    z-index: 5;
     .header-wrap {
       display: flex;
       &.container {

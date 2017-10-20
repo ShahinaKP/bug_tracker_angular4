@@ -8,10 +8,16 @@ import { FooterComponent } from './components/footer/footer.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { FormsModule } from '@angular/forms';
 import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireAuth } from 'angularfire2/auth';
 import { ReturnSetInfoDataService } from './components/dashboard/dashboard.service';
 import { HttpModule } from '@angular/http';
+
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner'; 
+
+import { MyCalendarModule } from './components/calendar/calendar.module';
+
+
+import { DemoUtilsModule } from './components/calendar/demo-utils/module';
 
 export const environment = {
     production: false,
@@ -31,9 +37,10 @@ export const environment = {
         AppRoutingModule,
         FormsModule,
         AngularFireModule.initializeApp(environment.firebase),
-        AngularFireDatabaseModule,
-        AngularFireAuthModule,
-        HttpModule
+        HttpModule,
+        MyCalendarModule,
+        DemoUtilsModule,
+        Ng4LoadingSpinnerModule
     ],
     declarations: [
         AppComponent,
@@ -42,7 +49,7 @@ export const environment = {
         HeaderComponent,
         FooterComponent
     ],
-    providers: [ ReturnSetInfoDataService ],
+    providers: [ ReturnSetInfoDataService, AngularFireAuth ],
     bootstrap: [AppComponent]
 })
 

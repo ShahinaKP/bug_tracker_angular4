@@ -62,7 +62,7 @@ module.exports = {
     }])
   ],  
     devServer: {
-        port: 8002,
+        port: 8071,
         host: 'localhost',
         historyApiFallback: true,
         watchOptions: {
