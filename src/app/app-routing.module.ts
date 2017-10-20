@@ -6,10 +6,10 @@ import { DashboardComponent }   from './components/dashboard/dashboard.component
 import { CalendarComponent }   from './components/calendar/calendar.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'bug_tracker_angular4/dist/login', pathMatch: 'full' },
-  { path: 'bug_tracker_angular4/distlogin',  component: LoginComponent },
-  { path: 'bug_tracker_angular4/dist/dashboard',  component: DashboardComponent },
-  { path: 'bug_tracker_angular4/dist/calendar',  component: CalendarComponent }
+  { path: '', redirectTo: '/login', pathMatch: 'prefix' },
+  { path: 'login',  component: LoginComponent },
+  { path: 'dashboard',  component: DashboardComponent },
+  { path: 'calendar',  component: CalendarComponent }
 ];
 
 @NgModule({
